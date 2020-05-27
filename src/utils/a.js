@@ -7,7 +7,8 @@ const a = {
       (v, i) => (i + 1) * config.apr.offset
     ),
 
-  roundOff: n => Math.round((n + Number.EPSILON) * 100) / 100,
+  // roundOff: n => Math.round((n + Number.EPSILON) * 100) / 100,
+  roundOff: n => parseFloat(n).toFixed(2),
 
   getAppreciatedValues: (cost, apr) => apr.map(a => (cost / 100) * a + cost),
 

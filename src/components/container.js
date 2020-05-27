@@ -201,14 +201,18 @@ class Container extends Component {
                 <tr>
                   <td>Total Amazon's charges</td>
                   {amz_total.map((ap, i) => (
-                    <td key={`amzt_${i}`}>{a.roundOff(ap)}</td>
+                    <td key={`amzt_${i}`}>
+                      <em>{a.roundOff(ap)}</em>
+                    </td>
                   ))}
                 </tr>
 
                 <tr>
                   <td>Selling Price</td>
                   {price.map((ap, i) => (
-                    <td key={`price_${i}`}>{a.roundOff(ap)}</td>
+                    <td key={`price_${i}`}>
+                      <strong>{a.roundOff(ap)}</strong>
+                    </td>
                   ))}
                 </tr>
               </tbody>
