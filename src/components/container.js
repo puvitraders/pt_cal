@@ -215,7 +215,11 @@ class Container extends Component {
             </table>
           </div>
         </article>
-        <footer></footer>
+        <footer>
+          <span>
+            Copyright © 2020, Puza.in. All rights reserved - Puvi Traders
+          </span>
+        </footer>
       </div>
     );
   }

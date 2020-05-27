@@ -17,7 +17,7 @@ body {
 
   article {
     .form {
-      margin: 1rem;
+      margin: 3rem;
       text-align: center;
 
       section {
@@ -46,7 +46,8 @@ body {
     }
 
     .computed {
-      margin: 2rem 1rem;
+      margin: 3rem 1rem;
+      text-align: center;
 
       table {
         border: 1px solid #ccc;
@@ -58,5 +59,11 @@ body {
         }
       }
     }
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.75rem;
   }
 }
