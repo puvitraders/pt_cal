@@ -1,4 +1,9 @@
 const config = {
+  apr: {
+    length: 10,
+    offset: 5
+  },
+
   gst: 18,
 
   amz: {

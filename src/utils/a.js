@@ -1,9 +1,17 @@
 import config from "../config";
 
 const a = {
+  getApr: () =>
+    Array.from(
+      { length: config.apr.length },
+      (v, i) => (i + 1) * config.apr.offset
+    ),
+
   roundOff: n => Math.round((n + Number.EPSILON) * 100) / 100,
 
   getAppreciatedValues: (cost, apr) => apr.map(a => (cost / 100) * a + cost),
+
+  getProfit: (aprv, cost) => aprv.map(a => a - cost),
 
   getRefferalValues: cost =>
     cost.map(c => (c / 100) * config.amz.getReferralFee(cost)),
