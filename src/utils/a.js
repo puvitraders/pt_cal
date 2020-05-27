@@ -14,7 +14,11 @@ const a = {
   getProfit: (aprv, cost) => aprv.map(a => a - cost),
 
   getRefferalValues: cost =>
-    cost.map(c => (c / 100) * config.amz.getReferralFee(cost)),
+    cost.map(c => {
+      const fee = config.amz.getReferralFee(c);
+
+      return c * ((1 / (1 - (fee / 100 + 0.18 * (fee / 100))) - 1) / 1.18);
+    }),
 
   getClosingValues: cost => cost.map(c => config.amz.getClosingFee(c)),
 
