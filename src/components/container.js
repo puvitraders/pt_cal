@@ -10,6 +10,7 @@ class Container extends Component {
       cost: 299,
       aprs: a.getApr(),
       profit: [],
+      tra: [],
       weight: 499,
       appreciated: [],
       gst: [],
@@ -46,6 +47,7 @@ class Container extends Component {
     const appreciated = a.getAppreciatedValues(cost, aprs);
     const profit = a.getProfit(appreciated, cost);
     const gst = a.getGST(appreciated);
+    const tra = a.addAll([appreciated, gst], aprs);
     const closing = a.getClosingValues(a.addAll([appreciated, gst], aprs));
     const shipping = a.getShippingValues(aprs, weight);
     const gst_cls = a.getGST(closing);
@@ -67,6 +69,7 @@ class Container extends Component {
       appreciated,
       profit,
       gst,
+      tra,
       referral,
       closing,
       shipping,
@@ -86,6 +89,7 @@ class Container extends Component {
       appreciated,
       profit,
       gst,
+      tra,
       closing,
       referral,
       shipping,
@@ -128,6 +132,7 @@ class Container extends Component {
             <table>
               <thead>
                 <tr>
+                  <th>#</th>
                   <th>APR Percentage :</th>
                   {aprs.map(ap => (
                     <th key={`th_${ap}`}>{ap}&#160;%</th>
@@ -136,83 +141,132 @@ class Container extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>Appreciated Value</td>
+                  <td>a</td>
+                  <td className="td-hd">Appreciated Value</td>
                   {appreciated.map((ap, i) => (
                     <td key={`apr_${i}`}>{a.roundOff(ap)}</td>
                   ))}
                 </tr>
 
                 <tr>
-                  <td>Profit</td>
-                  {profit.map((ap, i) => (
-                    <td key={`profit_${i}`}>{a.roundOff(ap)}</td>
-                  ))}
-                </tr>
-
-                <tr>
-                  <td>G.S.T payable</td>
+                  <td>b</td>
+                  <td className="td-hd">
+                    G.S.T payable
+                    <br />
+                    (18% of a)
+                  </td>
                   {gst.map((ap, i) => (
                     <td key={`gst_${i}`}>{a.roundOff(ap)}</td>
                   ))}
                 </tr>
 
+                <tr className="hg-rd">
+                  <td>c</td>
+                  <td className="td-hd">
+                    Total (returned by Amazon)
+                    <br />
+                    (a + b)
+                  </td>
+                  {tra.map((ap, i) => (
+                    <td key={`tra_${i}`}>{a.roundOff(ap)}</td>
+                  ))}
+                </tr>
+
                 <tr>
-                  <td>Referral/Commission</td>
+                  <td>d</td>
+                  <td className="td-hd">Referral/Commission</td>
                   {referral.map((ap, i) => (
                     <td key={`ref_${i}`}>{a.roundOff(ap)}</td>
                   ))}
                 </tr>
 
                 <tr>
-                  <td>GST on referral</td>
+                  <td>e</td>
+                  <td className="td-hd">
+                    GST on referral
+                    <br />
+                    (18% of d)
+                  </td>
                   {gst_ref.map((ap, i) => (
                     <td key={`gref_${i}`}>{a.roundOff(ap)}</td>
                   ))}
                 </tr>
 
                 <tr>
-                  <td>Closing fees</td>
+                  <td>f</td>
+                  <td className="td-hd">Closing fees</td>
                   {closing.map((ap, i) => (
                     <td key={`cls_${i}`}>{a.roundOff(ap)}</td>
                   ))}
                 </tr>
 
                 <tr>
-                  <td>GST on Closing</td>
+                  <td>g</td>
+                  <td className="td-hd">
+                    GST on Closing
+                    <br />
+                    (18% of f)
+                  </td>
                   {gst_cls.map((ap, i) => (
                     <td key={`gcls_${i}`}>{a.roundOff(ap)}</td>
                   ))}
                 </tr>
 
                 <tr>
-                  <td>Shipping fees</td>
+                  <td>h</td>
+                  <td className="td-hd">Shipping fees</td>
                   {shipping.map((ap, i) => (
                     <td key={`shp_${i}`}>{a.roundOff(ap)}</td>
                   ))}
                 </tr>
 
                 <tr>
-                  <td>GST on Shipping</td>
+                  <td>i</td>
+                  <td className="td-hd">
+                    GST on Shipping
+                    <br />
+                    (18% of h)
+                  </td>
                   {gst_shp.map((ap, i) => (
                     <td key={`gshp_${i}`}>{a.roundOff(ap)}</td>
                   ))}
                 </tr>
 
-                <tr>
-                  <td>Total Amazon's charges</td>
+                <tr className="hg-rd">
+                  <td>j</td>
+                  <td className="td-hd">
+                    Total Amazon's charges
+                    <br />
+                    (d + e + f + g + h + i)
+                  </td>
                   {amz_total.map((ap, i) => (
-                    <td key={`amzt_${i}`}>
-                      <em>{a.roundOff(ap)}</em>
-                    </td>
+                    <td key={`amzt_${i}`}>{a.roundOff(ap)}</td>
                   ))}
                 </tr>
 
-                <tr>
-                  <td>Selling Price</td>
+                <tr className="hg-pp">
+                  <td>k</td>
+                  <td className="td-hd">
+                    Selling Price
+                    <br />
+                    (c + j)
+                  </td>
                   {price.map((ap, i) => (
                     <td key={`price_${i}`}>
                       <strong>{a.roundOff(ap)}</strong>
                     </td>
+                  ))}
+                </tr>
+
+                <tr className="hg-bl">
+                  <td>l</td>
+                  <td className="td-hd">
+                    Profit
+                    <br />
+                    (cost - a)
+                  </td>
+                  {profit.map((ap, i) => (
+                    <td key={`profit_${i}`}>{a.roundOff(ap)}</td>
                   ))}
                 </tr>
               </tbody>
