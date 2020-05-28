@@ -1,62 +1,17 @@
-import React, { Component } from "react";
-import config from "../config";
-import a from "../utils/a";
+import React from "react";
+import FbaUtils from "../utils/fba_utils";
 
-class Fba extends Component {
-  //   su = new SimpleUtils();
+class Fba extends React.Component {
+  fu = new FbaUtils();
 
-  state = {
-    cost: 299,
-    weight: 499,
-    aprs: Array.from(
-      { length: config.apr.length },
-      (v, i) => (i + 1) * config.apr.offset
-    ),
-    rows: [
-      ["a", "referral", "per slab", "Referral / Commission", []],
-      ["b", "gst_referral", "18% of a", "GST on Referral", []],
-      ["", "closing", "per slab", "Closing", []],
-      ["", "gst_closing", "18% of c", "GST on Closing", []],
-      ["", "picknpack", "", "Pick & Pack", []],
-      ["", "gst_picknpack", "18% of e", "GST on Pick & Pack", []],
-      ["", "storage", "", "Storage", []],
-      ["", "gst_storage", "18% of e", "GST on Storage", []],
-      ["", "shipping", "per weight / region", "Shipping", []],
-      ["", "gst_shipping", "18% of e", "GST on Shipping", []],
-      ["g", "amz_total", "", "Total Amazon's charges", [], `hg-rd`],
-      ["h", "appreciated", "per APR", "Appreciated Value", []],
-      ["i", "gst_appreciated", "18% of h", "GST on Apr value", []],
-      ["j", "our_total", "h + i", "Amt. returned by Amazon", [], `hg-rd`],
-      ["k", "price", "g + j", "Selling Price", [], `hg-pp`],
-      ["Z", "profit", "h - cost", "Profit", [], `hg-bl`]
-    ]
-  };
+  state = this.fu.getState();
 
   componentDidMount = () => {
     this.updateAll();
   };
 
   updateAll = () => {
-    const { cost, weight, aprs, rows } = this.state;
-
-    const appreciated = a.getAppreciatedValues(cost, aprs);
-    const profit = a.getProfit(appreciated, cost);
-    const gst = a.getGST(appreciated);
-
-    rows.find(r => r[1] === "appreciated")[4] = appreciated;
-    rows.find(r => r[1] === "profit")[4] = profit;
-    rows.find(r => r[1] === "gst_appreciated")[4] = gst;
-    // rows.find(r => r[1] === "our_total")[4] = our_total;
-    // rows.find(r => r[1] === "closing")[4] = closing;
-    // rows.find(r => r[1] === "shipping")[4] = shipping;
-    // rows.find(r => r[1] === "gst_closing")[4] = gst_closing;
-    // rows.find(r => r[1] === "gst_shipping")[4] = gst_shipping;
-    // rows.find(r => r[1] === "referral")[4] = referral;
-    // rows.find(r => r[1] === "gst_referral")[4] = gst_referral;
-    // rows.find(r => r[1] === "amz_total")[4] = amz_total;
-    // rows.find(r => r[1] === "price")[4] = price;
-
-    this.setState({ rows });
+    this.setState({ rows: this.fu.updateAllRows({ ...this.state }) });
   };
 
   onCostChange = c => {

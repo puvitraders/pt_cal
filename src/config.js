@@ -43,6 +43,44 @@ const config = {
 
       return fee;
     }
+  },
+
+  amfba: {
+    getClosingFee: cost => {
+      let closing_fees = 0;
+
+      if (cost <= 92.47) {
+        closing_fees = 25;
+      } else if (cost > 92.47 && cost <= 294) {
+        closing_fees = 20;
+      } else if (cost > 294 && cost <= 679) {
+        closing_fees = 12;
+      } else {
+        closing_fees = 26;
+      }
+
+      return closing_fees;
+    },
+
+    getReferralFee: cost => (cost <= 300 ? 13 : 17),
+
+    getPnP: () => 10,
+
+    getStorageFee: () => 10,
+
+    getShippingFee: weight => {
+      let fee = 1000;
+
+      if (weight < 500) {
+        fee = 56;
+      } else if (weight >= 500 && weight < 1000) {
+        fee = 81;
+      } else if (weight >= 1000 && weight < 2000) {
+        fee = 101;
+      }
+
+      return fee;
+    }
   }
 };
 
