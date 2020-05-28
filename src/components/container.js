@@ -2,28 +2,34 @@ import React from "react";
 import "../static/styles.scss";
 import Simple from "./simple";
 import config from "../config";
+import Header from "./header";
+import Fba from "./fba";
+import Footer from "./footer";
 
 class Container extends React.Component {
   constructor() {
     super();
 
-    this.state = { selected: config.pages.simple[0] };
+    this.state = { selected: config.pages[1] };
   }
 
-  render() {
-    return (
-      <div className="container">
-        <header>
-          <h2>Simple calculator</h2>
-        </header>
+  updateSelection = selected => {
+    this.setState({ selected });
+  };
 
-        <Simple />
-        <footer>
-          <span>
-            Copyright © 2020, Puza.in. All rights reserved - Puvi Traders
-          </span>
-        </footer>
-      </div>
+  render() {
+    const { selected } = this.state;
+
+    return (
+      <>
+        <Header updateSelection={this.updateSelection} selected={selected} />
+
+        {selected === config.pages[0] && <Simple />}
+
+        {selected === config.pages[1] && <Fba />}
+
+        <Footer />
+      </>
     );
   }
 }

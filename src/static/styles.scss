@@ -10,18 +10,54 @@ body {
 
   header {
     text-align: center;
+
+    nav {
+      margin: 1rem;
+
+      ul {
+        li {
+          list-style-type: none;
+          display: inline-block;
+
+          button {
+            padding: 0.5rem 2rem;
+            border-radius: 1rem;
+            margin: 0 1rem;
+            font-size: 1rem;
+            background-color: #6e2c00;
+            color: #f6ddcc;
+            cursor: pointer;
+            border: 1px solid #e59866;
+
+            &:hover {
+              background-color: #a04000;
+            }
+
+            &.selected {
+              border: 3px solid #e59866;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+
     h2 {
-      margin: 1rem 0 2rem 0;
+      margin: 1rem 0;
     }
   }
 
   article {
+    width: 90%;
+    min-height: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+
     .form {
-      margin: 2rem;
+      margin: 0.5rem;
       text-align: center;
 
       section {
-        // text-align: left;
         display: inline-block;
         width: 20%;
         margin-right: 2rem;
@@ -48,10 +84,12 @@ body {
     .computed {
       margin: 2rem 1rem;
       text-align: center;
+      overflow-y: scroll;
 
       table {
         text-align: left;
-        display: inline-block;
+        margin: 0 auto;
+        border-collapse: collapse;
         border: 1px solid #ccc;
         padding: 0.5rem;
 
@@ -72,12 +110,17 @@ body {
         }
 
         td {
-          border: 1px solid #ccc;
-          padding: 0.35rem 1rem;
+          border-left: 1px solid #f5b7b1;
+          border-right: 1px solid #f5b7b1;
+          border-top: 1px solid #d0ece7;
+          border-bottom: 1px solid #d0ece7;
+          padding: 0.25rem 0.5rem;
+          text-align: right;
 
           &.td-hd {
             font-size: 0.7rem;
             padding-left: 3px;
+            text-align: left;
           }
         }
       }

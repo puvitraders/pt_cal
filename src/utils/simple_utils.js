@@ -24,7 +24,7 @@ class SimpleUtils {
       ["i", "gst_appreciated", "18% of h", "GST on Apr value", []],
       ["j", "our_total", "h + i", "Amt. returned by Amazon", [], `hg-rd`],
       ["k", "price", "g + j", "Selling Price", [], `hg-pp`],
-      ["l", "profit", "cost - h", "Profit", [], `hg-bl`]
+      ["Z", "profit", "h - cost", "Profit", [], `hg-bl`]
     ]
   });
 

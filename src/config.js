@@ -1,8 +1,8 @@
 const config = {
-  pages: {
-    simple: ["Simple", "Simple Calculator"],
-    fba: ["FBA", "FBA Calculator"]
-  },
+  pages: [
+    ["Simple", "Simple Calculator"],
+    ["FBA", "FBA Calculator"]
+  ],
 
   apr: {
     length: 10,
