@@ -12,9 +12,9 @@ const config = {
 
       if (cost <= 132) {
         closing_fees = 2;
-      } else if (cost > 132 && cost <= 315) {
+      } else if (cost > 132 && cost <= 315.91) {
         closing_fees = 5;
-      } else if (cost > 315 && cost <= 693) {
+      } else if (cost > 315.91 && cost <= 692.01) {
         closing_fees = 25;
       } else {
         closing_fees = 50;
