@@ -48,7 +48,7 @@ class Container extends Component {
     const profit = a.getProfit(appreciated, cost);
     const gst = a.getGST(appreciated);
     const tra = a.addAll([appreciated, gst], aprs);
-    const closing = a.getClosingValues(a.addAll([appreciated, gst], aprs));
+    const closing = a.getClosingValues(tra);
     const shipping = a.getShippingValues(aprs, weight);
     const gst_cls = a.getGST(closing);
     const gst_shp = a.getGST(shipping);
@@ -56,7 +56,6 @@ class Container extends Component {
       [appreciated, gst, closing, gst_cls, shipping, gst_shp],
       aprs
     );
-    console.log(amz_sub_cost);
     const referral = a.getRefferalValues(amz_sub_cost);
     const gst_ref = a.getGST(referral);
     const amz_total = a.addAll(

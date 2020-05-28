@@ -10,11 +10,11 @@ const config = {
     getClosingFee: cost => {
       let closing_fees = 0;
 
-      if (cost <= 250) {
+      if (cost <= 132) {
         closing_fees = 2;
-      } else if (cost > 250 && cost <= 500) {
+      } else if (cost > 132 && cost <= 315) {
         closing_fees = 5;
-      } else if (cost > 500 && cost <= 1000) {
+      } else if (cost > 315 && cost <= 693) {
         closing_fees = 25;
       } else {
         closing_fees = 50;
