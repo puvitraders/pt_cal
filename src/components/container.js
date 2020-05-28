@@ -174,7 +174,7 @@ class Container extends Component {
 
                 <tr>
                   <td>d</td>
-                  <td className="td-hd">Referral/Commission</td>
+                  <td className="td-hd">Referral / Commission</td>
                   {referral.map((ap, i) => (
                     <td key={`ref_${i}`}>{a.roundOff(ap)}</td>
                   ))}
