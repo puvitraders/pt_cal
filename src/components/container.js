@@ -1,12 +1,13 @@
 import React from "react";
 import "../static/styles.scss";
 import Simple from "./simple";
+import config from "../config";
 
 class Container extends React.Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = { selected: config.pages.simple[0] };
   }
 
   render() {
@@ -17,7 +18,6 @@ class Container extends React.Component {
         </header>
 
         <Simple />
-
         <footer>
           <span>
             Copyright © 2020, Puza.in. All rights reserved - Puvi Traders

@@ -1,4 +1,9 @@
 const config = {
+  pages: {
+    simple: ["Simple", "Simple Calculator"],
+    fba: ["FBA", "FBA Calculator"]
+  },
+
   apr: {
     length: 10,
     offset: 5
