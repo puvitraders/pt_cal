@@ -37,14 +37,12 @@ class SimpleUtils {
     const shipping = a.getShippingValues(aprs, weight);
     const gst_closing = a.getGST(closing);
     const gst_shipping = a.getGST(shipping);
-
     const amz_sub_cost = a.addAll(
       [appreciated, gst, closing, gst_closing, shipping, gst_shipping],
       aprs
     );
     const referral = a.getRefferalValues(amz_sub_cost);
     const gst_referral = a.getGST(referral);
-
     const amz_total = a.addAll(
       [referral, closing, shipping, gst_referral, gst_closing, gst_shipping],
       aprs
